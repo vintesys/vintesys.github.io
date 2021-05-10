@@ -188,7 +188,7 @@ section {
 
 .btn-demo {
 	color: #ffffff;
-	background-color: #6772e5;
+	background-color: #ff7b00;
 	letter-spacing: .1em;
 	padding: 15px 48px;
 	display: inline-block;
@@ -217,7 +217,7 @@ section {
 
 .btn-buy {
 	color: #ffffff;
-	background-color: #0095f7;
+	background-color: #02c051;
 	letter-spacing: .1em;
 	padding: 15px 48px;
 	display: inline-block;
@@ -415,7 +415,7 @@ section {
 }
 
 .pricing-box .demo {
-	color: #6772e5!important;
+	color: #f19100!important;
 }
 
 /* ==============================================
