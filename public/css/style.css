@@ -1,18 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Sarala:wght@400;700&display=swap');
 
-* {
-  margin-bottom: 50;
-  padding: 400;
-  box-sizing: border-box;
-  text-decoration: none;
+
+
+.map-responsive{
+
+  overflow:hidden;
+
+  padding-bottom:56.25%;
+
+  position:relative;
+
+  height:0;
+
 }
+
+.map-responsive iframe{
+
+  left:0;
+
+  top:0;
+
+  height:100%;
+
+  width:100%;
+
+  position:absolute;
+
+}
+
+
+
+/* 
 
 body {
   font-size: 100%;
   font-family: 'Sarala', sans-serif;
-  
-
-
+  background-color: #ffffff;
 }
 
 .bkg-color-white{
@@ -20,12 +43,25 @@ body {
 }
 
 
-/* jumbottom transfome */
+.footer-bkg-custom{
 
-.icon-color{
-  color:rgba(37, 58, 124, 0.53)
+  background-color: #0a0620;
+  
+  }
+
+
+
+
+
+
+
+
+.container{
+
+  background-color: #f3f3f3;
+
+
 }
-
 
 .color-red-custom{
 
@@ -40,39 +76,11 @@ body {
 }
 
 
-/* Modal vamos conversar */
-
-
-.modal-content-custom{
-
-background-color: #0a0620;
-
-}
-.close {
-  float: right;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1;
-  color: #e9ecef;
-  text-shadow: 0 1px 0 #fff;
-  opacity: .5;
-}
-
-.modal-header {
-
-  border-bottom: 0px solid
-
-}
 
 
 
 
 
-.card-footer-custom {
-  padding: 0.75rem 1.25rem;
-  background-color: rgba(255, 255, 255, 0.03);
-  border-top: 1px 
-}
 
 .cabecalho {
   display: flex;
@@ -82,124 +90,85 @@ background-color: #0a0620;
   padding: 24px;
 }
 
-.cabecalho-imagem {
-  height: 72px;
-}
 
-.cabecalho-menu {
-  display: flex;
-  gap: 32px;
-}
 
-.cabecalho-menu-item {
-  font-family: 'Sarala', sans-serif;
-  color: #FFF2E7;
-  font-weight: 400;
-  font-size: 18px
-}
 
-.conteudo {
-  margin-bottom: 100px;
-  margin-top: 100px;
-  
-}
 
-.conteudo-principal {
-  margin: 4em;
+
+.conteudo-principal { 
+  margin: 4em; 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  padding-left: 50px;
+ 
   background-color: #ffffff;
 }
 
 .conteudo-principal-escrito {
   display: flex;
   flex-direction: column;
-  gap: 12px; 
+
 }
 
 
-.jumbotron-custom{
+.color-container-bkg-custom{
 
-  background-color: #f9f9f9;
+  background-color: #f3f3f3;
 }
 
 
-.conteudo-principal-escrito-titulo {
 
-  font-weight: 300;
-  font-size: 34px;
-  color: #464646;
+
+
+
+.custom-imagem-size {
+  height: 5em;
+
+}
+ */
+
+
+
+.custom-modal-h5-padding-bottom{
+
+
+  padding-top: 4em;
+
+} 
+
+
+.custom-modal-bkg{
+
+  background-color: #0a0620;
+  color: rgb(255, 255, 255);
 }
 
-.conteudo-principal-escrito-subtitulo {
-
-  font-weight: 400;
-  font-size: 24px;
-  color: #cc0505;
+.btn-modal-close {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #e9ecef;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
 }
 
-.conteudo-principal-escrito-botao {
-  background-color: #7b7b7b;
-  width: 180px;
-  height: 60px;
-  border: none;
-  box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
+.custom-modal-header {
+  border-bottom: 0px solid ; 
+  color:#ffffff
+}
+
+/* CARDS */
+
+.vs-custom-card {
+  padding: 0.75rem 1.25rem; 
+  background-color: rgba(255, 255, 255, 0.03);
+  border-top: 1px 
+}
+
+.vs-custom-icon-color{
   
-  font-weight: 400;
-  font-size: 24px;
-  color: #2F2325;
-}
+  color:rgba(37, 58, 124, 0.53);  
 
-.conteudo-principal-escrito-botao:hover {
-  background-color: rgba(236, 214, 196, 0.53);
-}
-
-.conteudo-principal-imagem {
-  height: 80px;
-  padding-right: 100px;
-}
-
-.footer-imagem {
-  height: 50px;
-  
-}
-
-.conteudo-sobrenos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  margin-top: 48px;
-  background-color: #f2f3f3;
-}
-
-.conteudo-secundario-titulo {
-  border-top: 0.4px solid #851616;
-  padding-top: 48px;
-  font-weight: 400;
-  font-size: 24px;
-  color: #333333;
-  margin-bottom: 16px;
-}
-
-.conteudo-secundario-paragrafo {
-
-  font-weight: 300;
-  font-size: 18px;
-  color: #464646;
-}
-
-.rodape {
-    padding: 32px;
-    border-top: 0.4px solid #5e5e5e;
-}
-
-.rodape-imagem {
-  height: 48px;
-  display: block;
-  margin: 0 auto;
 }
