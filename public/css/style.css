@@ -17,20 +17,16 @@
 .map-responsive iframe{
 
   left:0;
-
   top:0;
-
   height:100%;
-
   width:100%;
-
   position:absolute;
 
 }
 
 
 
-/* 
+
 
 body {
   font-size: 100%;
@@ -38,95 +34,6 @@ body {
   background-color: #ffffff;
 }
 
-.bkg-color-white{
-  background-color: #ffffff;
-}
-
-
-.footer-bkg-custom{
-
-  background-color: #0a0620;
-  
-  }
-
-
-
-
-
-
-
-
-.container{
-
-  background-color: #f3f3f3;
-
-
-}
-
-.color-red-custom{
-
-  color:#cc0505
-
-}
-
-.color-white-custom{
-
-  color:#ffffff
-
-}
-
-
-
-
-
-
-
-
-.cabecalho {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  padding: 24px;
-}
-
-
-
-
-
-
-.conteudo-principal { 
-  margin: 4em; 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
- 
-  background-color: #ffffff;
-}
-
-.conteudo-principal-escrito {
-  display: flex;
-  flex-direction: column;
-
-}
-
-
-.color-container-bkg-custom{
-
-  background-color: #f3f3f3;
-}
-
-
-
-
-
-
-.custom-imagem-size {
-  height: 5em;
-
-}
- */
 
 
 
