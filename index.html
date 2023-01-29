@@ -327,7 +327,7 @@
 
 
           <div class="form-group">
-            <label for="appmensagem">Aplicativo de mensagem</label>
+    
             <select class="form-control" id="app-mensagem">
               <option>Whatsapp</option>
               <option>Telegram</option>
@@ -391,92 +391,19 @@
 </body>
 
 
-<!-- The Modal -->
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content custom-modal-bkg ">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h2 class="modal-title custom-modal-header">Vamos Conversar</h2>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-
-
-        <div class="row">
-
-          <div class="col-sm-6">
-
-
-            <h5>
-              Precisa de ajuda no desenvolvimento de aplicativos?
-            </h5>
-
-            <h5 class="custom-modal-h5-padding-bottom">
-              Em breve entraremos em contato para falar sobre seu projeto.
-            </h5>
-
-            <p class="custom-modal-h5-padding-bottom">
-              Política de Privacidade: Não enviamos spam e prometemos manter seu endereço de e-mail seguro
-            </p>
-
-
-
-          </div>
-          <div class="col-sm-6">
-
-
-            <form id="form-contact-us">
-              <div class="form-group">
-
-                <input type="text" class="form-control" placeholder="Nome" id="nome" required>
-              </div>
-              <div class="form-group">
-
-                <input type="text" class="form-control" placeholder="Email" id="email" required>
-              </div>
-
-              <div class="form-group">
-                <input type="text" data-masked="" class="form-control" id="telefone"
-                  data-inputmask="'mask': '(99) 99999-9999'" placeholder="Telefone" required>
-              </div>
-
-
-
-              <div class="form-group">
-                <label for="appmensagem">Aplicativo de mensagem</label>
-                <select class="form-control" id="app-mensagem">
-                  <option>Whatsapp</option>
-                  <option>Telegram</option>
-                  <option>Facebook Messeger</option>
-                  <option>Outro</option>
-                  <option>Nenhum</option>
-                </select>
-              </div>
-              <div class="form-group">
-
-                <textarea class="form-control" rows="5" id="comment" placeholder="Qual sua ideia?"></textarea>
-              </div>
-
-
-              <button type="submit" id="btn-contact-us" style="border-radius: 24px!important;"
-                class="btn btn-success">Enviar</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <!-- The Modal OK -->
-<div class="modal fade" id="modal-contact-us-ok">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content  ">
+<div class="modal fade "  bac id="modal-contact-us-ok">
+  <div class="modal-dialog modal-lg modal-dialog-centered" >
+    <div class="modal-content"  >
+
+      <div class="modal-header">
+
+
+        <img class="img img-responsive" src="public/assets/images/heroku.png" />
+
+        
+      </div>
 
 
       <div class="modal-body">
@@ -486,9 +413,6 @@
 
           <div class="col-sm-12 text-center">
 
-            <img class="img img-responsive" src="public/assets/vintesys-logo-transparent.png" />
-
-            <hr />
 
             <h2 style="padding-top: 1em;">
 
@@ -496,9 +420,11 @@
 
             </h2>
 
+         
             <h5 style="padding-top: 1em; padding-bottom: 3em;">
-              Estamos animados para começarmos o projeto!
+              Retornaremos em breve para conversarmos sobre sua ideia!
             </h5>
+
 
 
 
@@ -520,7 +446,8 @@
 
 <script>
 
-  $("#form-contact-us").submit(function (event) {
+  $("#btn-contact-us").click(function (event) {
+
 
 
     event.preventDefault();
