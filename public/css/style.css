@@ -1,55 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Sarala:wght@400;700&display=swap');
 
 
-.bg-light {
-    background-color: #ffffff!important;
+
+
+.vs-title {
+  font-size: 2.5rem;
+  padding-top: 1em;
+  font-weight: 800;
 }
 
 
-.map-responsive{
+.vs-container-jumbotron { 
+   background-image: url('/public/assets/images/bkg-home.jpg'); 
+   background-repeat: no-repeat;
+   background-size: cover;
+  
+  }
 
-  overflow:hidden;
 
-  padding-bottom:56.25%;
 
-  position:relative;
+.vs-text{
 
-  height:0;
-
-}
-
-.map-responsive iframe{
-
-  left:0;
-  top:0;
-  height:100%;
-  width:100%;
-  position:absolute;
+  padding-bottom: 1em; 
+  line-height: 1.8em;
+  padding: 3rem;
 
 }
 
 
-
-.bg-dark {
-  background-color: #0a0620!important;
-}
 body {
   
   font-size: 100%;
-  font-family: 'Sarala', sans-serif;
-  background-color: #ffffff;
-}
-
-
-.custom-title {
-  
   font-family: 'Dosis', sans-serif;
+  background-color: #ffffff;
+  color: #282f3e;
 
+ 
 }
 
 
-
-
+/* MODAL */
 .custom-modal-h5-padding-bottom{
   padding-top: 4em;
 } 
@@ -79,13 +69,50 @@ body {
 /* CARDS */
 
 .vs-custom-card {
-  padding: 0.75rem 1.25rem; 
-  background-color: rgba(255, 255, 255, 0.03);
-  border-top: 1px 
+ 
+  background-color: #ffffff;
+  
+
+  background-clip: border-box;
+  border: 0px solid rgba(0,0,0,.125);
+  
 }
 
 .vs-custom-icon-color{
-  
-  color:rgba(37, 58, 124, 0.53);  
+  color:rgba(0, 43, 173, 0.53);  
+}
+
+
+.button-attr {
+  display: block;
+  width: 100%;
+  border-color: #28a745;
+  background-color: #28a745;
+  padding: 14px 28px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* MAPA */
+.map-responsive{
+
+  overflow:hidden;
+
+  padding-bottom:56.25%;
+
+  position:relative;
+
+  height:0;
+
+}
+
+.map-responsive iframe{
+
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
 
 }
