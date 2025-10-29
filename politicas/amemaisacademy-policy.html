@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="Política de Privacidade — Ame+ Academy | Ame Mais Educação" />
+  <meta name="keywords" content="Ame+ Academy, política de privacidade, Ame Mais Educação" />
+  <meta name="author" content="Ame Mais Educação / Vintesys" />
+
+  <title>Vintesys | Aplicativos Personalizados</title>
+  <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+
+  <!-- Vendors que você já usa -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/animate.css" />
+  <link rel="stylesheet" href="../css/font-awesome.min.css" />
+  <link rel="stylesheet" href="../css/magnific-popup.css" />
+  <link rel="stylesheet" href="../css/owl.theme.css" />
+  <link rel="stylesheet" href="../css/owl.carousel.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Unica+One&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <!-- Estilos desta página -->
+  <style>
+    :root{
+      --brand:#3CAD8B;        /* verde base */
+      --brand-700:#1F7D64;
+      --brand-900:#134E3F;
+      --accent:#FF7A35;       /* laranja do + */
+      --ink:#123106;
+      --bg:#ffffff;
+      --muted:#6b7280;
+    }
+    html,body{
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Source Sans Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: var(--brand)!important;
+      border: none;
+      box-shadow: 0 6px 24px rgba(0,0,0,.08);
+      min-height: 64px;
+    }
+    .navbar .navbar-brand,
+    .navbar a,
+    .navbar-toggle .icon-bar{ color: #fff !important; }
+    .navbar-toggle{ border-color: rgba(255,255,255,.4); margin-top: 14px; }
+    .navbar-toggle .icon-bar{ background:#fff; }
+    .brand-block{ display:flex;align-items:center;gap:16px;padding:.5rem 0; }
+    .brand-block img{ height:58px; max-width:180px; width:auto; }
+    .app-badge{
+      background: rgba(255,255,255,.2);
+      color:#fff;border-radius:999px;padding:.3rem .8rem;font-size:.8rem;
+      letter-spacing:.3px;font-weight:600;display:inline-flex;align-items:center;gap:.4rem;
+    }
+    .spacer-navbar{ height:84px; }
+
+    /* ===== HERO (contraste corrigido) ===== */
+    .hero{
+      position:relative;
+      background: linear-gradient(180deg, #33C39A 0%, #1F7D64 70%, #1a6a55 100%);
+      color:#fff;
+      border-bottom-left-radius: 24px;
+      border-bottom-right-radius: 24px;
+      overflow:hidden;
+    }
+    /* overlay para legibilidade do título */
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(0,0,0,.18), transparent 45%),
+        radial-gradient(circle at 85% 15%, rgba(255,122,53,.18), transparent 35%);
+      pointer-events:none;
+    }
+    /* cartão branco para a logo — garante contraste */
+    .logo-card{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 18px;background:#fff;border-radius:16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
+      border: 2px solid rgba(0,0,0,.03);
+    }
+    .logo-card img{ height:120px; width:auto; }
+    .hero h1{
+      font-family:"Unica One", cursive;
+      margin: 1rem 0 .4rem; font-size: clamp(28px, 3.2vw, 40px);
+      letter-spacing:.5px; color:#fff; text-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+    .hero p{
+      font-size: clamp(16px, 2.2vw, 18px);
+      color: rgba(255,255,255,.92); margin-bottom: 0;
+    }
+    .hero-wave{ position:absolute;left:0;right:0;bottom:0;height:40px; }
+
+    /* SECTION TITLE */
+    .section-title h2{ font-weight:700;color: var(--brand-900);margin: 0 0 .75rem; }
+    .section-title p.lead{ color: var(--muted);margin-bottom: 1.5rem; }
+
+    /* CARDS */
+    .policy-card{
+      background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:24px;margin:12px 0;
+      box-shadow: 0 6px 24px rgba(0,0,0,.06);
+    }
+    .policy-card h3{
+      display:flex;align-items:center;gap:.6rem;font-size:1.1rem;margin:0 0 .75rem;
+      color: var(--brand-700);letter-spacing:.2px;
+    }
+    .policy-card h3 .badge{ background: var(--brand); }
+    .policy-card p{ margin:0 0 .75rem;color: var(--ink);line-height:1.6; }
+    .highlight{
+      background: linear-gradient(90deg, var(--brand), var(--accent));
+      color:#fff;border-radius: 12px;padding: 10px 14px;font-weight: 700;
+      display: inline-flex;align-items:center;gap:.5rem;margin: .5rem 0 1rem;
+    }
+    .checklist{ padding-left:0; list-style:none; margin:0; }
+    .checklist li{ display:flex; gap:.6rem; align-items:flex-start; padding:.35rem 0; color: var(--ink); }
+    .checklist i{ margin-top:.2rem; opacity:.9; color: var(--brand-700); }
+
+    /* RODAPÉ */
+    footer{
+      background: linear-gradient(90deg, var(--brand), var(--accent));
+      color:#fff;text-align:center;padding: 28px 0;margin-top: 32px;
+      border-top-left-radius: 16px;border-top-right-radius: 16px;
+    }
+
+    .hr-soft{ border:0;border-top:1px dashed rgba(0,0,0,.12);margin: 18px 0; }
+
+    /* Back to top */
+    .back-to-top{
+      position:fixed; right:16px; bottom:16px; width:44px; height:44px; border-radius:999px;
+      background: var(--accent); color:#fff; border:none; display:none; align-items:center; justify-content:center;
+      box-shadow:0 10px 24px rgba(0,0,0,.18); z-index: 9999;
+    }
+    .back-to-top.show{ display:flex; }
+
+    /* Responsivo */
+    @media (max-width: 991px){
+      .brand-block img{ height:52px; }
+      .logo-card img{ height:100px; }
+    }
+    @media (max-width: 575px){
+      .policy-card{ padding:18px; }
+      .highlight{ display:block; }
+      .logo-card{ padding:10px 14px; }
+      .logo-card img{ height:88px; }
+    }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+  <!-- NAV -->
+  <nav class="navbar navbar-fixed-top" role="navigation" aria-label="Barra de navegação principal">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Abrir menu">
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" aria-label="Ame Mais Educação">
+          <div class="brand-block">
+            <img src="../images/logo-ame-mais-educacao.png.webp" alt="Ame Mais Educação" />
+            <span class="app-badge"><i class="fas fa-shield-alt"></i> Política de Privacidade</span>
+          </div>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" role="menu">
+          <li><a href="#politica" class="smoothScroll">Política</a></li>
+          <li><a href="#seguranca" class="smoothScroll">Segurança</a></li>
+          <li><a href="#controles" class="smoothScroll">Controles</a></li>
+          <li><a href="#atualizacoes" class="smoothScroll">Atualizações</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="spacer-navbar" aria-hidden="true"></div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="row" style="padding: 28px 0 64px;">
+        <div class="col-sm-12 text-center">
+          <div class="logo-card" aria-label="Logo Ame+ Academy">
+            <!-- troque o src abaixo para o arquivo real da logo -->
+            <img src="../images/ame_academy_logo.png" alt="Ame+ Academy" />
+          </div>
+          <h1>Política de Privacidade</h1>
+          <p>Privacidade e clareza no uso de dados para uma experiência de aprendizado segura e personalizada no <strong>Ame+ Academy</strong>.</p>
+        </div>
+      </div>
+    </div>
+    <svg class="hero-wave" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,32L60,37.3C120,43,240,53,360,58.7C480,64,600,64,720,58.7C840,53,960,43,1080,37.3C1200,32,1320,32,1380,32L1440,32L1440,64L1380,64C1320,64,1200,64,1080,64C960,64,840,64,720,64C600,64,480,64,360,64C240,64,120,64,60,64L0,64Z" fill="#ffffff"></path>
+    </svg>
+  </header>
+
+  <!-- MAIN -->
+  <main id="politica">
+    <section class="container" style="padding: 28px 0;">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="section-title text-center">
+            <h2>Como o Ame+ Academy trata seus dados</h2>
+            <p class="lead">Resumo prático do que coletamos, como usamos e quais escolhas você tem.</p>
+          </div>
+
+          <!-- Intro -->
+          <div class="policy-card">
+            <p>O <strong>Ame+ Academy</strong> foi concebido para apoiar seu progresso em cursos e trilhas de aprendizagem. Para oferecer recursos como autenticação simplificada, continuidade entre dispositivos e métricas de melhoria, alguns dados são tratados de forma responsável e proporcional.</p>
+            <hr class="hr-soft" />
+            <div class="highlight"><i class="fas fa-info-circle"></i> Esta política explica a coleta, o uso, o compartilhamento, os controles do usuário e a segurança das informações.</div>
+          </div>
+
+          <!-- 1. COLETA -->
+          <div class="policy-card" id="coleta">
+            <h3><span class="badge">1</span> Informações que podemos coletar</h3>
+            <p><strong>1.1 Credenciais de acesso:</strong> armazenamos um identificador único e <em>senha criptografada</em> para login e acesso via biometria. Esses dados são confidenciais e não são compartilhados com terceiros.</p>
+            <p><strong>1.2 Dados biométricos (opcional):</strong> ao habilitar impressão digital ou reconhecimento facial, os dados biométricos são usados apenas para autenticação e <u>permanecem no seu dispositivo</u>.</p>
+            <p><strong>1.3 Indicadores de uso agregados:</strong> podemos registrar, de forma anonimizada, eventos como abertura de lições, tempo de estudo e conclusão de atividades para evoluir a experiência do app.</p>
+            <ul class="checklist">
+              <li><i class="fas fa-check-circle"></i> Coleta mínima e finalidade definida</li>
+              <li><i class="fas fa-check-circle"></i> Criptografia em trânsito e em repouso</li>
+              <li><i class="fas fa-check-circle"></i> Sem comercialização de dados pessoais</li>
+            </ul>
+          </div>
+
+          <!-- 2. USO -->
+          <div class="policy-card">
+            <h3><span class="badge">2</span> Como utilizamos as informações</h3>
+            <p><strong>2.1 Autenticação e acesso:</strong> viabilizar login seguro, inclusive por biometria.</p>
+            <p><strong>2.2 Continuidade de estudo:</strong> lembrar seu progresso (ex.: última aula aberta) e preferências não sensíveis.</p>
+            <p><strong>2.3 Melhoria contínua:</strong> analisar métricas agregadas e <em>anonimizadas</em> para aperfeiçoar conteúdos e desempenho.</p>
+          </div>
+
+          <!-- 3. COMPARTILHAMENTO -->
+          <div class="policy-card" id="compartilhamento">
+            <h3><span class="badge">3</span> Compartilhamento</h3>
+            <p><strong>3.1 Sem repasse a terceiros:</strong> não compartilhamos dados pessoais com terceiros, salvo obrigações legais ou mediante solicitação expressa do usuário.</p>
+          </div>
+
+          <!-- 4. SEGURANÇA -->
+          <div class="policy-card" id="seguranca">
+            <h3><span class="badge">4</span> Segurança da informação</h3>
+            <p><strong>4.1 Medidas técnicas e organizacionais:</strong> criptografia, controle de acesso, <em>firewalls</em>, monitoramento e revisões periódicas de segurança.</p>
+            <ul class="checklist">
+              <li><i class="fas fa-check-circle"></i> Princípio do mínimo privilégio</li>
+              <li><i class="fas fa-check-circle"></i> Auditoria e registro de eventos relevantes</li>
+              <li><i class="fas fa-check-circle"></i> Boas práticas de ciclo de vida de dados</li>
+            </ul>
+          </div>
+
+          <!-- 5. CONTROLES DO USUÁRIO (variação para diferenciar) -->
+          <div class="policy-card" id="controles">
+            <h3><span class="badge" style="background:var(--accent)">5</span> Seus controles de privacidade</h3>
+            <p><strong>5.1 Preferências:</strong> você pode ativar ou desativar recursos opcionais (como biometria) a qualquer momento nas configurações do app.</p>
+            <p><strong>5.2 Solicitações:</strong> canais indicados no aplicativo permitem pedidos de acesso, correção, portabilidade ou exclusão de dados, conforme a legislação aplicável.</p>
+          </div>
+
+          <!-- 6. ATUALIZAÇÕES -->
+          <div class="policy-card" id="atualizacoes">
+            <h3><span class="badge">6</span> Atualizações desta política</h3>
+            <p>Podemos atualizar este documento periodicamente. Em caso de mudanças relevantes, comunicaremos pelos canais do aplicativo. Recomendamos visitar esta página regularmente para conhecer a versão mais recente.</p>
+          </div>
+
+          <!-- CONTATO / LGPD -->
+          <div class="policy-card">
+            <h3><i class="fas fa-user-shield" style="color:var(--accent)"></i> Canal de privacidade</h3>
+            <p>Para dúvidas ou solicitações relacionadas à privacidade e proteção de dados, utilize o canal oficial informado no aplicativo <strong>Ame+ Academy</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p>Copyright &copy; 2024 Vintesys | Aplicativos Personalizados</p>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- SCRIPTS (mesmos pacotes que você já usa) -->
+  <script src="../js/jquery.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/jquery.magnific-popup.min.js"></script>
+  <script src="../js/magnific-popup-options.js"></script>
+  <script src="../js/owl.carousel.min.js"></script>
+  <script src="../js/smoothscroll.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.3/jquery.inputmask.bundle.min.js"></script>
+  <script src="../js/wow.min.js"></script>
+  <script src="../js/custom.js"></script>
+
+  <!-- JS da página -->
+  <script>
+    (function(){
+      var btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', function(){
+        if(window.scrollY > 300){ btn.classList.add('show'); }
+        else { btn.classList.remove('show'); }
+      });
+      btn.addEventListener('click', function(){
+        window.scrollTo({ top:0, behavior:'smooth' });
+      });
+
+      // Smooth scroll simples
+      document.querySelectorAll('a.smoothScroll[href^="#"]').forEach(function(a){
+        a.addEventListener('click', function(e){
+          var id = this.getAttribute('href');
+          var target = document.querySelector(id);
+          if(target){
+            e.preventDefault();
+            var y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+            window.scrollTo({ top:y, behavior:'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
