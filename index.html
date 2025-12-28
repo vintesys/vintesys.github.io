@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Momento Tech</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Blockly core + generator JS -->
   <script src="https://unpkg.com/blockly@10.4.3/blockly.min.js"></script>
   <script src="https://unpkg.com/blockly@10.4.3/javascript_compressed.js"></script>
   <script src="https://unpkg.com/blockly@10.4.3/msg/pt-br.js"></script>
@@ -34,8 +36,11 @@
       <h3>CENÁRIO</h3>
       <div id="stage" class="stage scene-base">
         <div id="ametechWrapper" style="left:12%; bottom:18%;">
-          <div id="ametechSprite"></div>
-          <div id="speechBubble" class="empty"></div>
+          <!-- Camada segura para transformações (giro/escala/visibilidade) -->
+          <div id="ametechTransform">
+            <div id="ametechSprite"></div>
+            <div id="speechBubble" class="empty"></div>
+          </div>
         </div>
       </div>
       <p class="hint">Use os blocos e clique em <b>Executar missão</b>.</p>
@@ -45,18 +50,36 @@
     </section>
   </main>
 
+  <!-- TOOLBOX COMPLETO -->
   <xml id="toolbox" style="display:none">
-    <category name="Repetição" colour="#0EA5E9">
-      <block type="controls_repeat_ext">
-        <value name="TIMES">
-          <shadow type="math_number"><field name="NUM">4</field></shadow>
-        </value>
+
+    <!-- ========= AMETECH (DIDÁTICO) ========= -->
+    <category name="Ametech" colour="#6366F1">
+      <block type="ametech_mission_start"></block>
+      <block type="ametech_mission_success"></block>
+
+      <sep></sep>
+
+      <block type="ametech_say"></block>
+      <block type="ametech_clear_speech"></block>
+
+      <sep></sep>
+
+      <block type="ametech_show"></block>
+      <block type="ametech_hide"></block>
+      <block type="ametech_set_size">
+        <field name="SIZE">normal</field>
       </block>
-      <block type="controls_if"></block>
+
+      <sep></sep>
+
+      <block type="ametech_face_right"></block>
+      <block type="ametech_face_left"></block>
+      <block type="ametech_face_from_rotation"></block>
     </category>
 
-  
     <category name="Movimento" colour="#4F46E5">
+      <!-- Movimentos existentes -->
       <block type="ametech_move_right_simple">
         <value name="STEPS"><shadow type="math_number"><field name="NUM">5</field></shadow></value>
       </block>
@@ -69,33 +92,182 @@
       <block type="ametech_move_down_simple">
         <value name="STEPS"><shadow type="math_number"><field name="NUM">5</field></shadow></value>
       </block>
-    
-            <block type="ametech_step_back">
-        <value name="STEPS"><shadow type="math_number"><field name="NUM">4</field></shadow></value>
-      </block>
-      <block type="ametech_spin_left"></block>
-      <block type="ametech_spin_right"></block>
 
-<block type="ametech_jump"></block>
-         <block type="ametech_move_to">
-        <value name="X"><shadow type="math_number"><field name="NUM">5</field></shadow></value>
-        <value name="Y"><shadow type="math_number"><field name="NUM">2</field></shadow></value>
+      <block type="ametech_jump"></block>
+
+      <block type="ametech_move_to">
+        <value name="X"><shadow type="math_number"><field name="NUM">40</field></shadow></value>
+        <value name="Y"><shadow type="math_number"><field name="NUM">25</field></shadow></value>
       </block>
       <block type="ametech_center"></block>
-    </category>
 
-      <category name="Ametech" colour="#6366F1">
-      <block type="ametech_say"></block>
-      <block type="ametech_clear_speech"></block>
-      
+      <sep></sep>
+
+      <!-- GIRO -->
+      <block type="ametech_turn_left_90"></block>
+      <block type="ametech_turn_right_90"></block>
+      <block type="ametech_rotate_by">
+        <value name="DEG"><shadow type="math_number"><field name="NUM">15</field></shadow></value>
+      </block>
+      <block type="ametech_set_rotation">
+        <value name="DEG"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+      </block>
+      <block type="ametech_reset_rotation"></block>
+      <block type="ametech_turn_random"></block>
+
+      <sep></sep>
+
+      <!-- MOVIMENTO “AVANÇADO” SEM QUEBRAR O ATUAL -->
+      <block type="ametech_move_forward">
+        <value name="STEPS"><shadow type="math_number"><field name="NUM">5</field></shadow></value>
+      </block>
+      <block type="ametech_move_backward">
+        <value name="STEPS"><shadow type="math_number"><field name="NUM">3</field></shadow></value>
+      </block>
+      <block type="ametech_random_walk">
+        <value name="STEPS"><shadow type="math_number"><field name="NUM">6</field></shadow></value>
+      </block>
+      <block type="ametech_bounce_once"></block>
     </category>
 
     <category name="Cenário" colour="#22C55E">
       <block type="ametech_set_background"></block>
-      
+      <block type="ametech_set_background_random"></block>
+      <block type="ametech_reset_scene"></block>
     </category>
 
-  
+    <category name="Decisão & Controle" colour="#EF4444">
+      <!-- Para 1º ano (mais “pronto”) -->
+      <block type="ametech_if_center"></block>
+      <block type="ametech_if_edge"></block>
+
+      <sep></sep>
+
+      <!-- Se/Senão custom (fácil de ler) -->
+      <block type="ametech_if_else_condition"></block>
+
+      <sep></sep>
+
+      <!-- Esperas com segurança (timeout) -->
+      <block type="ametech_wait_ms">
+        <value name="MS"><shadow type="math_number"><field name="NUM">300</field></shadow></value>
+      </block>
+      <block type="ametech_wait_seconds">
+        <value name="SEC"><shadow type="math_number"><field name="NUM">1</field></shadow></value>
+      </block>
+      <block type="ametech_wait_until_center"></block>
+      <block type="ametech_wait_until_edge"></block>
+
+      <sep></sep>
+
+      <!-- Laços “didáticos” prontos -->
+      <block type="ametech_repeat_until_edge">
+        <value name="MAX"><shadow type="math_number"><field name="NUM">20</field></shadow></value>
+      </block>
+      <block type="ametech_repeat_until_center">
+        <value name="MAX"><shadow type="math_number"><field name="NUM">20</field></shadow></value>
+      </block>
+    </category>
+
+    <category name="Sensores" colour="#10B981">
+      <block type="ametech_get_x"></block>
+      <block type="ametech_get_y"></block>
+      <block type="ametech_is_center"></block>
+      <block type="ametech_is_edge"></block>
+
+      <sep></sep>
+
+      <block type="ametech_get_rotation"></block>
+      <block type="ametech_is_visible"></block>
+    </category>
+
+    <category name="Som" colour="#0EA5E9">
+      <block type="ametech_beep">
+        <value name="FREQ"><shadow type="math_number"><field name="NUM">880</field></shadow></value>
+        <value name="MS"><shadow type="math_number"><field name="NUM">120</field></shadow></value>
+      </block>
+      <block type="ametech_success_sound"></block>
+    </category>
+
+    <sep></sep>
+
+    <!-- ========= BLOCKLY “MAX” (NATIVO) ========= -->
+    <category name="Lógica" colour="#8B5CF6">
+      <block type="controls_if"></block>
+      <block type="logic_compare"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean"></block>
+      <block type="logic_null"></block>
+      <block type="logic_ternary"></block>
+    </category>
+
+    <category name="Laços" colour="#0EA5E9">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <shadow type="math_number"><field name="NUM">4</field></shadow>
+        </value>
+      </block>
+      <block type="controls_whileUntil"></block>
+      <block type="controls_for"></block>
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+    </category>
+
+    <category name="Matemática" colour="#F97316">
+      <block type="math_number"></block>
+      <block type="math_arithmetic"></block>
+      <block type="math_single"></block>
+      <block type="math_trig"></block>
+      <block type="math_constant"></block>
+      <block type="math_number_property"></block>
+      <block type="math_round"></block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo"></block>
+      <block type="math_constrain"></block>
+      <block type="math_random_int"></block>
+      <block type="math_random_float"></block>
+    </category>
+
+    <category name="Texto" colour="#22C55E">
+      <block type="text"></block>
+      <block type="text_join"></block>
+      <block type="text_append"></block>
+      <block type="text_length"></block>
+      <block type="text_isEmpty"></block>
+      <block type="text_indexOf"></block>
+      <block type="text_charAt"></block>
+      <block type="text_getSubstring"></block>
+      <block type="text_changeCase"></block>
+      <block type="text_trim"></block>
+      <block type="text_print"></block>
+      <block type="text_prompt_ext"></block>
+    </category>
+
+    <category name="Listas" colour="#06B6D4">
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat"></block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf"></block>
+      <block type="lists_getIndex"></block>
+      <block type="lists_setIndex"></block>
+      <block type="lists_getSublist"></block>
+      <block type="lists_split"></block>
+      <block type="lists_sort"></block>
+    </category>
+
+    <category name="Cor" colour="#A855F7">
+      <block type="colour_picker"></block>
+      <block type="colour_random"></block>
+      <block type="colour_rgb"></block>
+      <block type="colour_blend"></block>
+    </category>
+
+    <!-- Variáveis e Funções: máximo que o Blockly oferece via toolbox dinâmico -->
+    <category name="Variáveis" colour="#F59E0B" custom="VARIABLE"></category>
+    <category name="Funções" colour="#64748B" custom="PROCEDURE"></category>
+
   </xml>
 
   <script src="main.js"></script>
