@@ -1,6 +1,4 @@
-* {
-  box-sizing: border-box
-}
+* { box-sizing: border-box }
 
 body {
   margin: 0;
@@ -18,11 +16,7 @@ body {
   border-bottom: 1px solid #e5e7eb
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px
-}
+.brand { display: flex; align-items: center; gap: 10px }
 
 .pill {
   width: 44px;
@@ -36,19 +30,11 @@ body {
   font-weight: 800
 }
 
-.title {
-  font-weight: 800
-}
+.title { font-weight: 800 }
 
-.subtitle {
-  font-size: 12px;
-  color: #64748b
-}
+.subtitle { font-size: 12px; color: #64748b }
 
-.actions {
-  display: flex;
-  gap: 8px
-}
+.actions { display: flex; gap: 8px }
 
 .actions button {
   border: 0;
@@ -60,14 +46,8 @@ body {
   font-weight: 700
 }
 
-.actions button:nth-child(2) {
-  background: #0ea5e9
-}
-
-.actions button:nth-child(3) {
-  background: #e5e7eb;
-  color: #111827
-}
+.actions button:nth-child(2) { background: #0ea5e9 }
+.actions button:nth-child(3) { background: #e5e7eb; color: #111827 }
 
 .layout {
   display: grid;
@@ -89,9 +69,7 @@ body {
   min-height: 520px
 }
 
-.side {
-  padding: 10px
-}
+.side { padding: 10px }
 
 .side h3 {
   margin: 6px 0;
@@ -100,11 +78,7 @@ body {
   color: #111827
 }
 
-.hint {
-  margin: 8px 0 10px;
-  font-size: 12px;
-  color: #64748b
-}
+.hint { margin: 8px 0 10px; font-size: 12px; color: #64748b }
 
 .stage {
   position: relative;
@@ -118,26 +92,22 @@ body {
   background-repeat: no-repeat
 }
 
-.scene-base {
-  background-image: url('imagens/cenario_base.png');
-  background-color: #e0f2fe
-}
-
-.scene-sala {
-  background-image: url('imagens/cenario_sala.png');
-  background-color: #fff7ed
-}
-
-.scene-cidade {
-  background-image: url('imagens/cenario_cidade.png');
-  background-color: #dbeafe
-}
+.scene-base  { background-image: url('imagens/cenario_base.png');  background-color: #e0f2fe }
+.scene-sala  { background-image: url('imagens/cenario_sala.png');  background-color: #fff7ed }
+.scene-cidade{ background-image: url('imagens/cenario_cidade.png');background-color: #dbeafe }
 
 #ametechWrapper {
   position: absolute;
   width: 18%;
   aspect-ratio: 1/1.2;
   transform-origin: center bottom
+}
+
+/* Camada segura: giro/escala/visibilidade */
+#ametechTransform{
+  width: 100%;
+  height: 100%;
+  transform-origin: center bottom;
 }
 
 #ametechSprite {
@@ -149,12 +119,7 @@ body {
   background-image: url('imagens/ametech_robo.png')
 }
 
-/* ====== CAMINHADA (SPRITE SHEET 1024x256; 4 frames 256x256) ======
-   O truque definitivo:
-   - background-size: 400% 100%  (folha = 4x a largura do elemento)
-   - animar background-position de 0% -> 100% com steps(4)
-   Isso garante troca frame a frame (0, 33.33, 66.66, 100) e funciona em todos navegadores.
-*/
+/* ====== CAMINHADA (SPRITE SHEET 1024x256; 4 frames 256x256) ====== */
 #ametechSprite.walking {
   background-size: 400% 100%;
   background-position: 0% 140%;
@@ -162,35 +127,16 @@ body {
   will-change: background-position;
 }
 
-#ametechSprite.walking.dir-right {
-  background-image: url('imagens/ametech_robo_walk_right_fixed.png')
-}
-
-#ametechSprite.walking.dir-left {
-  background-image: url('imagens/ametech_robo_walk_left_fixed.png')
-}
-
-#ametechSprite.walking.dir-back {
-  background-image: url('imagens/ametech_robo_walking_back.png')
-}
+#ametechSprite.walking.dir-right { background-image: url('imagens/ametech_robo_walk_right_fixed.png') }
+#ametechSprite.walking.dir-left  { background-image: url('imagens/ametech_robo_walk_left_fixed.png') }
 
 @keyframes ametechWalkFrames {
-  from {
-    background-position: 0% 100%
-  }
-
-  to {
-    background-position: 100% 100%
-  }
+  from { background-position: 0% 100% }
+  to   { background-position: 100% 100% }
 }
 
-
-/* ====== PULO (SPRITE SHEET 4 FRAMES) ======
-   - Corpo: animação no wrapper (sobe e desce) com translateY
-   - Sprite: troca imagem e anima frames uma vez
-*/
+/* ====== PULO (SPRITE SHEET 4 FRAMES) ====== */
 #ametechWrapper.jumping {
-  /* valores configuráveis via JS */
   --jump-ms: 520ms;
   --jump-height: 28%;
   animation: ametechJumpBody var(--jump-ms) ease-out 1;
@@ -209,7 +155,6 @@ body {
   background-repeat: no-repeat;
   background-size: 400% 100%;
   background-position: 0% 100%;
-  /* sincroniza com o corpo */
   animation: ametechJumpFrames var(--jump-ms, 520ms) steps(3) 1;
   will-change: background-position;
 }
@@ -218,42 +163,6 @@ body {
   from { background-position: 0% 100%; }
   to   { background-position: 100% 100%; }
 }
-
-
-
-
-
-
-
-
-
-
-
-/* ====== GIRO (SPRITE SHEET 4 FRAMES) ======
-   - Apenas troca frames do sprite (sem mover o corpo)
-   - Usado pelos blocos: girar para esquerda / direita
-*/
-#ametechSprite.spinning {
-  background-repeat: no-repeat;
-  background-size: 400% 100%;
-  background-position: 0% 100%;
-  animation: ametechSpinFrames var(--spin-ms, 520ms) steps(3) 1;
-  will-change: background-position;
-}
-
-#ametechSprite.spinning.spin-right {
-  background-image: url('imagens/ametech_robo_spin_right.png');
-}
-
-#ametechSprite.spinning.spin-left {
-  background-image: url('imagens/ametech_robo_spin_left.png');
-}
-
-@keyframes ametechSpinFrames {
-  from { background-position: 0% 100%; }
-  to   { background-position: 100% 100%; }
-}
-
 
 #speechBubble {
   position: absolute;
@@ -286,10 +195,7 @@ body {
   transform: translateX(-50%) rotate(45deg)
 }
 
-#speechBubble.empty {
-  opacity: 0;
-  transform: translate(-50%, 6px)
-}
+#speechBubble.empty { opacity: 0; transform: translate(-50%, 6px) }
 
 #output {
   margin: 0;
@@ -307,23 +213,8 @@ body {
 }
 
 @media (max-width:980px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  /* Blockly usa a altura da tela sem engessar */
-  #blocklyDiv {
-    height: 55vh;
-    min-height: 420px;
-  }
-
-  /* Cenário fica mais “horizontal” e útil */
-  .stage {
-    padding-top: 56%;
-  }
-
-  /* Saída maior no mobile para não ficar espremida */
-  #output {
-    max-height: 320px;
-  }
+  .layout { grid-template-columns: 1fr; }
+  #blocklyDiv { height: 55vh; min-height: 420px; }
+  .stage { padding-top: 56%; }
+  #output { max-height: 320px; }
 }
