@@ -168,11 +168,10 @@ body {
 
 #ametechSprite.walking.dir-left {
   background-image: url('imagens/ametech_robo_walk_left_fixed.png')
-
+}
 
 #ametechSprite.walking.dir-back {
   background-image: url('imagens/ametech_robo_walking_back.png')
-}
 }
 
 @keyframes ametechWalkFrames {
