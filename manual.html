@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manual — Momento Tech (Blockly + Ametech)</title>
+  <style>
+    :root{
+      --paper:#ffffff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --soft:#f8fafc;
+      --accent:#45c6dd; --accent2:#4F46E5; --good:#16a34a; --warn:#f59e0b; --bad:#ef4444;
+      --shadow: 0 10px 26px rgba(15, 23, 42, .12); --radius: 14px;
+    }
+    *{ box-sizing:border-box }
+    body{ margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--ink);
+      background: linear-gradient(180deg, #eef2ff 0%, #f8fafc 40%, #f1f5f9 100%); }
+    header{ position:sticky; top:0; z-index:10; background: rgba(255,255,255,.92); backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line); }
+    .top{ max-width:1100px; margin:0 auto; padding:14px 16px; display:flex; align-items:center;
+      justify-content:space-between; gap:12px; }
+    .brand{ display:flex; align-items:center; gap:10px; }
+    .pill{ width:50px; height:36px; border-radius:999px; background: var(--accent); color:#fff; font-weight:900;
+      display:flex; align-items:center; justify-content:center; letter-spacing:.06em; box-shadow: 0 10px 18px rgba(69,198,221,.25); }
+    h1{ font-size:16px; margin:0; }
+    .sub{ font-size:12px; color:var(--muted); margin:2px 0 0 0; }
+    nav{ display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; }
+    nav a{ font-size:12px; text-decoration:none; color:#0f172a; padding:7px 10px; border:1px solid var(--line);
+      border-radius:999px; background:#fff; }
+    nav a:hover{ border-color:#cbd5e1; background:#f8fafc }
+    main{ max-width:1100px; margin:0 auto; padding:18px 16px 40px; display:grid; grid-template-columns: 320px 1fr; gap:16px; }
+    .card{ background:var(--paper); border:1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden; }
+    .card .hd{ padding:14px 14px 10px; border-bottom:1px solid var(--line); background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%); }
+    .card .hd h2{ margin:0; font-size:14px; }
+    .card .bd{ padding:14px; }
+    .kpi{ display:grid; gap:10px; }
+    .kpi .box{ border:1px solid var(--line); border-radius:12px; padding:10px 12px; background: var(--soft); }
+    .kpi .box b{ display:block; font-size:12px; margin-bottom:2px }
+    .kpi .box span{ font-size:12px; color:var(--muted) }
+    .toc a{ display:block; padding:8px 10px; border-radius:10px; text-decoration:none; color:var(--ink);
+      border:1px solid transparent; font-size:13px; }
+    .toc a:hover{ background:var(--soft); border-color:var(--line) }
+    section{ scroll-margin-top: 86px; }
+    h3{ margin:0 0 8px; font-size:14px; }
+    p{ margin:0 0 10px; color:var(--ink); line-height:1.5; font-size:13px; }
+    ul{ margin: 8px 0 12px 18px; color:var(--ink); font-size:13px; line-height:1.5; }
+    ol{ margin: 8px 0 12px 18px; font-size:13px; line-height:1.6; }
+    .note,.warn,.ok{ border-radius:12px; padding:10px 12px; border:1px solid var(--line); background:var(--soft);
+      margin:10px 0 12px; font-size:13px; }
+    .ok{ border-color: rgba(22,163,74,.35); background: rgba(22,163,74,.06) }
+    .warn{ border-color: rgba(245,158,11,.35); background: rgba(245,158,11,.08) }
+    .note{ border-color: rgba(69,198,221,.35); background: rgba(69,198,221,.08) }
+    code.inline{ background: rgba(15,23,42,.06); padding:2px 6px; border-radius:8px; border:1px solid rgba(15,23,42,.08); font-size:12px; }
+    table{ width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:12px;
+      border:1px solid var(--line); background:#fff; font-size:13px; margin: 10px 0 14px; }
+    th,td{ padding:10px 10px; border-bottom:1px solid var(--line); vertical-align:top; text-align:left; }
+    th{ background:#f8fafc; font-size:12px; letter-spacing:.02em; color:#111827; }
+    tr:last-child td{ border-bottom:none }
+    .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    .badge{ display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); background:#fff;
+      border-radius:999px; padding:5px 8px; font-size:12px; color:var(--muted); margin-right:6px; margin-bottom:6px; }
+    .dot{ width:8px; height:8px; border-radius:999px; background: var(--accent2); }
+    .dot.g{ background: var(--good) } .dot.w{ background: var(--warn) } .dot.r{ background: var(--bad) }
+    .callout{ display:flex; gap:10px; align-items:flex-start; border:1px solid var(--line); border-radius:12px;
+      padding:10px 12px; background:#fff; margin:10px 0 12px; }
+    .icon{ width:28px; height:28px; border-radius:10px; background: rgba(79,70,229,.10); border:1px solid rgba(79,70,229,.22);
+      display:flex; align-items:center; justify-content:center; font-weight:900; color: var(--accent2); flex: 0 0 auto; }
+    footer{ max-width:1100px; margin:0 auto; padding: 0 16px 28px; color: var(--muted); font-size: 12px; }
+
+    /* ======= Galeria de Blocos (Blockly) ======= */
+    .block-gallery{ display:grid; gap:12px; }
+    .block-card{ display:flex; gap:14px; align-items:center; border:1px solid var(--line); border-radius:14px; padding:12px; background:#fff; }
+    .block-preview{ width:360px; height:130px; border:1px dashed #cbd5e1; border-radius:12px; background:#f8fafc; overflow:hidden; }
+    .block-info h4{ margin:0 0 6px; font-size:14px; }
+    .block-info p{ margin:0; font-size:13px; color:var(--muted); }
+    .tabs{ display:flex; flex-wrap:wrap; gap:8px; margin: 0 0 12px 0; }
+    .tab{ cursor:pointer; user-select:none; font-size:12px; border:1px solid var(--line); background:#fff; color:#0f172a;
+      padding:7px 10px; border-radius:999px; }
+    .tab.active{ border-color:#cbd5e1; background:#f8fafc; }
+    .hidden{ display:none !important; }
+
+    @media (max-width: 980px){
+      main{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      nav{ justify-content:flex-start }
+      .block-card{ flex-direction:column; align-items:stretch; }
+      .block-preview{ width:100%; height:140px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top">
+    <div class="brand">
+      <div class="pill">AME</div>
+      <div>
+        <h1>Manual do Projeto — Momento Tech (Blockly + Ametech)</h1>
+        <div class="sub">Guia didático e técnico para uso do editor de blocos e do cenário (1º ao 9º ano).</div>
+      </div>
+    </div>
+    <nav aria-label="Atalhos">
+      <a href="#visao-geral">Visão geral</a>
+      <a href="#como-usar">Como usar</a>
+      <a href="#categorias">Categorias</a>
+      <a href="#galeria-blocos">Galeria de Blocos</a>
+      <a href="#guia-professor">Guia do Professor</a>
+      <a href="#avaliacao">Rubrica</a>
+      <a href="#problemas">Solução</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <aside class="card">
+    <div class="hd"><h2>Resumo rápido</h2></div>
+    <div class="bd kpi">
+      <div class="box">
+        <b>O que é</b>
+        <span>Ambiente de programação com blocos (Blockly) para controlar o Ametech em um cenário.</span>
+      </div>
+      <div class="box">
+        <b>Como executa</b>
+        <span>Os blocos geram JavaScript. As ações são enfileiradas para acontecerem em sequência (fila segura).</span>
+      </div>
+      <div class="box">
+        <b>Público</b>
+        <span>1º ao 9º ano (progressão: movimentos → lógica → variáveis → funções).</span>
+      </div>
+
+      <div class="note">
+        <b>Arquivos do projeto</b><br/>
+        <code class="inline">index.html</code> (interface + toolbox)<br/>
+        <code class="inline">style.css</code> (layout, cenário, sprites)<br/>
+        <code class="inline">main.js</code> (runtime + blocos + execução)<br/>
+        <code class="inline">manual_momento_tech.html</code> (este manual)
+      </div>
+
+      <div class="card" style="border:none; box-shadow:none; background:transparent;">
+        <div class="bd toc" style="padding:0;">
+          <a href="#visao-geral">1. Visão geral e objetivos</a>
+          <a href="#como-usar">2. Como usar (passo a passo)</a>
+          <a href="#categorias">3. Categorias do toolbox</a>
+          <a href="#galeria-blocos">4. Galeria visual de blocos (Blockly real)</a>
+          <a href="#guia-professor">5. Guia do Professor</a>
+          <a href="#avaliacao">6. Rubrica de avaliação</a>
+          <a href="#problemas">7. Solução de problemas</a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <article class="card">
+
+    <div class="hd"><h2 id="visao-geral">1) Visão geral e objetivos</h2></div>
+    <div class="bd">
+      <p>
+        O <b>Momento Tech</b> é um ambiente de programação por blocos (Blockly) onde os alunos criam algoritmos
+        e observam o Ametech executando ações em um cenário.
+      </p>
+      <ul>
+        <li><b>Sequência</b>: ordenar instruções.</li>
+        <li><b>Repetição</b>: automatizar padrões.</li>
+        <li><b>Decisão</b>: reagir a condições (centro, borda, visibilidade).</li>
+        <li><b>Abstração</b>: variáveis, funções e decomposição (avançado).</li>
+      </ul>
+      <div class="ok">
+        <b>Estratégia de progressão</b><br/>
+        Fundamental I: blocos prontos (andar/falar/pular/repetir curto).<br/>
+        Fundamental II: sensores + lógica + variáveis + funções.
+      </div>
+    </div>
+
+    <div class="hd"><h2 id="como-usar">2) Como usar (passo a passo)</h2></div>
+    <div class="bd">
+      <ol>
+        <li>Abra o projeto no navegador (arquivo <code class="inline">index.html</code>).</li>
+        <li>Arraste blocos do toolbox para a área de trabalho.</li>
+        <li>Conecte os blocos (de cima para baixo) para criar um algoritmo.</li>
+        <li>Clique em <b>Executar missão</b>.</li>
+        <li>Observe o cenário e leia a área <b>Saída</b>.</li>
+        <li>Use <b>Resetar</b> para voltar ao estado inicial.</li>
+      </ol>
+      <div class="warn">
+        <b>Dica didática</b><br/>
+        Peça ao aluno para dizer “o que vai acontecer” antes de executar. Depois compare previsão e resultado.
+      </div>
+    </div>
+
+    <div class="hd"><h2 id="categorias">3) Categorias do toolbox</h2></div>
+    <div class="bd">
+      <p>O toolbox é dividido em blocos do Ametech e blocos nativos do Blockly.</p>
+      <div class="grid2">
+        <div class="note">
+          <b>Blocos do Ametech</b><br/>
+          <span class="badge"><span class="dot"></span> Ametech</span>
+          <span class="badge"><span class="dot"></span> Movimento</span>
+          <span class="badge"><span class="dot"></span> Decisão & Controle</span>
+          <span class="badge"><span class="dot"></span> Sensores</span>
+          <span class="badge"><span class="dot"></span> Cenário</span>
+          <span class="badge"><span class="dot"></span> Som</span>
+          <p style="margin-top:8px;">Focados em ações no palco: andar, pular, falar, ir ao centro, mudar cenário.</p>
+        </div>
+        <div class="note">
+          <b>Blocos nativos do Blockly</b><br/>
+          <span class="badge"><span class="dot g"></span> Lógica</span>
+          <span class="badge"><span class="dot g"></span> Laços</span>
+          <span class="badge"><span class="dot g"></span> Matemática</span>
+          <span class="badge"><span class="dot g"></span> Texto</span>
+          <span class="badge"><span class="dot g"></span> Variáveis</span>
+          <span class="badge"><span class="dot g"></span> Funções</span>
+          <p style="margin-top:8px;">Para algoritmos mais sofisticados (6º–9º).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hd"><h2 id="galeria-blocos">4) Galeria visual de blocos (Blockly real)</h2></div>
+    <div class="bd">
+      <p>
+        Nesta seção, o manual renderiza os <b>próprios blocos do Blockly</b> (incluindo os blocos customizados do Ametech),
+        como referência visual para alunos e professores.
+      </p>
+      <div class="warn">
+        <b>Importante</b><br/>
+        Para os blocos aparecerem, abra este manual via servidor (não via <code class="inline">file://</code>).<br/>
+        Exemplo: na pasta do projeto, execute <code class="inline">python -m http.server</code> e acesse pelo navegador.
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Categorias de blocos">
+        <div class="tab active" data-tab="tab-ametech">Ametech (custom)</div>
+        <div class="tab" data-tab="tab-nativos">Blockly (nativos)</div>
+      </div>
+
+      <div id="tab-ametech" class="block-gallery">
+        <!-- cards injetados via JS -->
+      </div>
+
+      <div id="tab-nativos" class="block-gallery hidden">
+        <!-- cards injetados via JS -->
+      </div>
+
+      <div class="note">
+        <b>Blocos customizados detectados no seu projeto</b><br/>
+        <code class='inline'>ametech_center</code>, <code class='inline'>ametech_clear_speech</code>, <code class='inline'>ametech_jump</code>, <code class='inline'>ametech_move_to</code>, <code class='inline'>ametech_say</code>, <code class='inline'>ametech_set_background</code>, <code class='inline'>ametech_step</code>
+      </div>
+    </div>
+
+    <div class="hd"><h2 id="guia-professor">5) Guia do Professor</h2></div>
+    <div class="bd">
+      <h3>5.1 Rotina de aula sugerida (35–50 min)</h3>
+      <table>
+        <thead><tr><th style="width:22%;">Etapa</th><th style="width:28%;">Tempo</th><th>Como conduzir</th></tr></thead>
+        <tbody>
+          <tr><td><b>Aquecimento</b></td><td>5–8 min</td><td>Mostre 1 bloco, peça previsão e execute ao vivo.</td></tr>
+          <tr><td><b>Desafio</b></td><td>15–25 min</td><td>Objetivo claro + 1 restrição simples (opcional).</td></tr>
+          <tr><td><b>Depuração</b></td><td>8–12 min</td><td>Prever → executar → ler saída → ajustar (uma mudança por vez).</td></tr>
+          <tr><td><b>Socialização</b></td><td>5–8 min</td><td>2–3 alunos mostram solução e explicam blocos.</td></tr>
+          <tr><td><b>Fechamento</b></td><td>2–5 min</td><td>“Qual bloco foi mais importante hoje e por quê?”</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <div class="icon">★</div>
+        <div>
+          <p style="margin:0;"><b>Catálogo de desafios</b> está em arquivo separado: <code class="inline">catalogo_desafios.html</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hd"><h2 id="avaliacao">6) Rubrica de avaliação</h2></div>
+    <div class="bd">
+      <table>
+        <thead>
+          <tr><th style="width:20%;">Critério</th><th style="width:26%;">Iniciante</th><th style="width:26%;">Em desenvolvimento</th><th>Proficiente</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Sequência</b></td><td>Ordem confusa.</td><td>Sequência simples.</td><td>Sequência clara com início/meio/fim.</td></tr>
+          <tr><td><b>Repetição</b></td><td>Repete manualmente.</td><td>Usa laço em parte.</td><td>Escolhe laço adequado e reduz blocos.</td></tr>
+          <tr><td><b>Decisão</b></td><td>Não usa condição.</td><td>Usa condição simples.</td><td>Usa if/else com condição clara.</td></tr>
+          <tr><td><b>Clareza</b></td><td>Blocos espalhados.</td><td>Organiza parcialmente.</td><td>Organiza bem e mantém legível.</td></tr>
+          <tr><td><b>Depuração</b></td><td>Desiste ao erro.</td><td>Ajusta com ajuda.</td><td>Testa e ajusta incrementalmente.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hd"><h2 id="problemas">7) Solução de problemas</h2></div>
+    <div class="bd">
+      <h3>7.1 “Os blocos não aparecem no manual”</h3>
+      <ul>
+        <li>Abra o manual por servidor (ex.: <code class="inline">python -m http.server</code>).</li>
+        <li>Verifique se há internet (o Blockly está vindo do CDN).</li>
+        <li>Abra o Console do navegador para ver mensagens de erro.</li>
+      </ul>
+      <div class="warn">
+        <b>Nota</b><br/>Este manual usa: <code class="inline">unpkg.com/blockly@10.4.3</code>.
+      </div>
+    </div>
+
+  </article>
+</main>
+
+<footer>
+  <div style="padding-top:10px;">
+    <b>Manual interno — Momento Tech</b><br/>
+    Inclui galeria visual de blocos renderizados pelo próprio Blockly.
+  </div>
+</footer>
+
+<!-- Blockly (CDN) -->
+<script src="https://unpkg.com/blockly@10.4.3/blockly.min.js"></script>
+<script src="https://unpkg.com/blockly@10.4.3/javascript_compressed.js"></script>
+<script src="https://unpkg.com/blockly@10.4.3/msg/pt-br.js"></script>
+
+<script>
+  // Locale PT-BR (compatível com variações de build do Blockly)
+  try {
+    if (Blockly.Msg && Blockly.Msg['pt-br']) Blockly.setLocale(Blockly.Msg['pt-br']);
+  } catch (e) {}
+
+  // ======= Blocos customizados do seu projeto (extraídos do main.js) =======
+  (function() {
+    Blockly.Blocks['ametech_center'] = {
+    init(){ this.appendDummyInput().appendField('centralizar Ametech');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); }
+  };
+  Blockly.JavaScript['ametech_center'] = () => 'ametechCenter();\n';
+
+  Blockly.Blocks['ametech_step'] = {
+    init(){ this.appendDummyInput().appendField('Ametech anda')
+        .appendField(new Blockly.FieldDropdown([['para a direita','direita'],['para a esquerda','esquerda'],['para cima','cima'],['para baixo','baixo']]),'DIR');
+      this.appendValueInput('STEPS').setCheck('Number').appendField('passos');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); }
+  };
+  Blockly.JavaScript['ametech_step'] = (b) => {
+    const dir = b.getFieldValue('DIR') || 'direita';
+    const st = Blockly.JavaScript.valueToCode(b,'STEPS',Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    return `ametechStep(${JSON.stringify(dir)}, ${st});\n`;
+  };
+
+  function simple(name,label,dir){
+    Blockly.Blocks[name] = { init(){ this.appendDummyInput().appendField('Ametech anda '+label);
+      this.appendValueInput('STEPS').setCheck('Number').appendField('passos');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); } };
+    Blockly.JavaScript[name] = (b)=> {
+      const st = Blockly.JavaScript.valueToCode(b,'STEPS',Blockly.JavaScript.ORDER_ATOMIC) || '0';
+      return `ametechStep(${JSON.stringify(dir)}, ${st});\n`;
+    };
+  }
+
+Blockly.Blocks['ametech_jump'] = {
+  init() {
+    this.appendDummyInput().appendField('Ametech pula');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['ametech_clear_speech'] = {
+    init(){ this.appendDummyInput().appendField('apagar fala do Ametech');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(140); }
+  };
+
+Blockly.Blocks['ametech_jump'] = {
+  init() {
+    this.appendDummyInput().appendField('Ametech pula');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['ametech_move_to'] = {
+    init(){ this.appendDummyInput().appendField('mover Ametech para');
+      this.appendValueInput('X').setCheck('Number').appendField('x');
+      this.appendValueInput('Y').setCheck('Number').appendField('y');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); }
+  };
+  Blockly.JavaScript['ametech_move_to'] = (b) => {
+    const x = Blockly.JavaScript.valueToCode(b,'X',Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    const y = Blockly.JavaScript.valueToCode(b,'Y',Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    return `ametechMoveTo(${x}, ${y});\n`;
+  };
+
+  Blockly.Blocks['ametech_center'] = {
+    init(){ this.appendDummyInput().appendField('centralizar Ametech');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); }
+  };
+  Blockly.JavaScript['ametech_center'] = () => 'ametechCenter();\n';
+
+  Blockly.Blocks['ametech_step'] = {
+    init(){ this.appendDummyInput().appendField('Ametech anda')
+        .appendField(new Blockly.FieldDropdown([['para a direita','direita'],['para a esquerda','esquerda'],['para cima','cima'],['para baixo','baixo']]),'DIR');
+      this.appendValueInput('STEPS').setCheck('Number').appendField('passos');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); }
+  };
+  Blockly.JavaScript['ametech_step'] = (b) => {
+    const dir = b.getFieldValue('DIR') || 'direita';
+    const st = Blockly.JavaScript.valueToCode(b,'STEPS',Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    return `ametechStep(${JSON.stringify(dir)}, ${st});\n`;
+  };
+
+  function simple(name,label,dir){
+    Blockly.Blocks[name] = { init(){ this.appendDummyInput().appendField('Ametech anda '+label);
+      this.appendValueInput('STEPS').setCheck('Number').appendField('passos');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); } };
+    Blockly.JavaScript[name] = (b)=> {
+      const st = Blockly.JavaScript.valueToCode(b,'STEPS',Blockly.JavaScript.ORDER_ATOMIC) || '0';
+      return `ametechStep(${JSON.stringify(dir)}, ${st});\n`;
+    };
+  }
+
+Blockly.Blocks['ametech_jump'] = {
+  init() {
+    this.appendDummyInput().appendField('Ametech pula');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['ametech_say'] = {
+    init(){ this.appendDummyInput().appendField('Ametech fala').appendField(new Blockly.FieldTextInput('Olá!'),'TEXT');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); }
+  };
+  Blockly.JavaScript['ametech_say'] = (b) => `ametechSay(${JSON.stringify(b.getFieldValue('TEXT')||'')});\n`;
+
+  Blockly.Blocks['ametech_move_to'] = {
+    init(){ this.appendDummyInput().appendField('mover Ametech para');
+      this.appendValueInput('X').setCheck('Number').appendField('x');
+      this.appendValueInput('Y').setCheck('Number').appendField('y');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); }
+  };
+  Blockly.JavaScript['ametech_move_to'] = (b) => {
+    const x = Blockly.JavaScript.valueToCode(b,'X',Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    const y = Blockly.JavaScript.valueToCode(b,'Y',Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    return `ametechMoveTo(${x}, ${y});\n`;
+  };
+
+  Blockly.Blocks['ametech_center'] = {
+    init(){ this.appendDummyInput().appendField('centralizar Ametech');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); }
+  };
+  Blockly.JavaScript['ametech_center'] = () => 'ametechCenter();\n';
+
+  Blockly.Blocks['ametech_step'] = {
+    init(){ this.appendDummyInput().appendField('Ametech anda')
+        .appendField(new Blockly.FieldDropdown([['para a direita','direita'],['para a esquerda','esquerda'],['para cima','cima'],['para baixo','baixo']]),'DIR');
+      this.appendValueInput('STEPS').setCheck('Number').appendField('passos');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); }
+  };
+  Blockly.JavaScript['ametech_step'] = (b) => {
+    const dir = b.getFieldValue('DIR') || 'direita';
+    const st = Blockly.JavaScript.valueToCode(b,'STEPS',Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    return `ametechStep(${JSON.stringify(dir)}, ${st});\n`;
+  };
+
+  function simple(name,label,dir){
+    Blockly.Blocks[name] = { init(){ this.appendDummyInput().appendField('Ametech anda '+label);
+      this.appendValueInput('STEPS').setCheck('Number').appendField('passos');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); } };
+    Blockly.JavaScript[name] = (b)=> {
+      const st = Blockly.JavaScript.valueToCode(b,'STEPS',Blockly.JavaScript.ORDER_ATOMIC) || '0';
+      return `ametechStep(${JSON.stringify(dir)}, ${st});\n`;
+    };
+  }
+
+Blockly.Blocks['ametech_jump'] = {
+  init() {
+    this.appendDummyInput().appendField('Ametech pula');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(210);
+  }
+};
+
+Blockly.Blocks['ametech_set_background'] = {
+    init(){ this.appendDummyInput().appendField('mudar cenário para')
+        .appendField(new Blockly.FieldDropdown([['padrão','base'],['sala de aula','sala'],['cidade','cidade']]),'TYPE');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(140); }
+  };
+
+Blockly.Blocks['ametech_step'] = {
+    init(){ this.appendDummyInput().appendField('Ametech anda')
+        .appendField(new Blockly.FieldDropdown([['para a direita','direita'],['para a esquerda','esquerda'],['para cima','cima'],['para baixo','baixo']]),'DIR');
+      this.appendValueInput('STEPS').setCheck('Number').appendField('passos');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); }
+  };
+  Blockly.JavaScript['ametech_step'] = (b) => {
+    const dir = b.getFieldValue('DIR') || 'direita';
+    const st = Blockly.JavaScript.valueToCode(b,'STEPS',Blockly.JavaScript.ORDER_ATOMIC) || '0';
+    return `ametechStep(${JSON.stringify(dir)}, ${st});\n`;
+  };
+
+  function simple(name,label,dir){
+    Blockly.Blocks[name] = { init(){ this.appendDummyInput().appendField('Ametech anda '+label);
+      this.appendValueInput('STEPS').setCheck('Number').appendField('passos');
+      this.setPreviousStatement(true); this.setNextStatement(true); this.setColour(210); } };
+    Blockly.JavaScript[name] = (b)=> {
+      const st = Blockly.JavaScript.valueToCode(b,'STEPS',Blockly.JavaScript.ORDER_ATOMIC) || '0';
+      return `ametechStep(${JSON.stringify(dir)}, ${st});\n`;
+    };
+  }
+
+Blockly.Blocks['ametech_jump'] = {
+  init() {
+    this.appendDummyInput().appendField('Ametech pula');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(210);
+  }
+};
+  })();
+</script>
+
+<script>
+  function renderPreview(containerEl, state) {
+    const ws = Blockly.inject(containerEl, {
+      readOnly: true,
+      scrollbars: false,
+      sounds: false,
+      zoom: { controls: false, wheel: false, startScale: 0.95, maxScale: 1.2, minScale: 0.6 }
+    });
+    Blockly.serialization.workspaces.load(state, ws);
+    // “fit” simples
+    ws.scrollCenter();
+    ws.setScale(0.95);
+  }
+
+  function addCard(targetId, title, desc, state, height=130) {
+    const host = document.getElementById(targetId);
+    const card = document.createElement('div');
+    card.className = 'block-card';
+
+    const prev = document.createElement('div');
+    prev.className = 'block-preview';
+    prev.style.height = height + 'px';
+
+    const info = document.createElement('div');
+    info.className = 'block-info';
+    info.innerHTML = `<h4>${title}</h4><p>${desc}</p>`;
+
+    card.appendChild(prev);
+    card.appendChild(info);
+    host.appendChild(card);
+
+    renderPreview(prev, state);
+  }
+
+  // ======= Conteúdo da galeria =======
+  const ametech = [
+    {
+      title: "Ametech: andar (passos)",
+      desc: "Move o Ametech em uma direção por uma quantidade de passos (base para sequência e repetição).",
+      state: {
+        blocks: {
+          languageVersion: 0,
+          blocks: [{
+            type: "ametech_step",
+            x: 10, y: 10,
+            fields: { DIR: "RIGHT" },
+            inputs: {
+              STEPS: { block: { type: "math_number", fields: { NUM: 8 } } }
+            }
+          }]
+        }
+      }
+    },
+    {
+      title: "Ametech: mover para (x, y)",
+      desc: "Desloca até uma coordenada. Ótimo para introduzir plano cartesiano (6º–9º).",
+      state: {
+        blocks: {
+          languageVersion: 0,
+          blocks: [{
+            type: "ametech_move_to",
+            x: 10, y: 10,
+            inputs: {
+              X: { block: { type: "math_number", fields: { NUM: 120 } } },
+              Y: { block: { type: "math_number", fields: { NUM: 40 } } }
+            }
+          }]
+        }
+      }
+    },
+    {
+      title: "Ametech: falar",
+      desc: "Exibe uma fala do Ametech. Útil para narrativa e depuração (explicar o que está fazendo).",
+      state: {
+        blocks: {
+          languageVersion: 0,
+          blocks: [{
+            type: "ametech_say",
+            x: 10, y: 10,
+            inputs: {
+              TEXT: { block: { type: "text", fields: { TEXT: "Olá!" } } }
+            }
+          }]
+        }
+      }
+    },
+    {
+      title: "Ametech: apagar fala",
+      desc: "Remove o balão de fala do Ametech (limpa a tela).",
+      state: {
+        blocks: {
+          languageVersion: 0,
+          blocks: [{
+            type: "ametech_clear_speech",
+            x: 10, y: 10
+          }]
+        }
+      }
+    },
+    {
+      title: "Ametech: pular",
+      desc: "Executa a animação padrão de salto (reforço lúdico e finalização).",
+      state: {
+        blocks: {
+          languageVersion: 0,
+          blocks: [{
+            type: "ametech_jump",
+            x: 10, y: 10
+          }]
+        }
+      }
+    },
+    {
+      title: "Ametech: ir ao centro",
+      desc: "Posiciona no centro (ótimo para 1º–3º como objetivo simples).",
+      state: {
+        blocks: {
+          languageVersion: 0,
+          blocks: [{
+            type: "ametech_center",
+            x: 10, y: 10
+          }]
+        }
+      }
+    },
+    {
+      title: "Ametech: mudar cenário",
+      desc: "Altera o cenário (variedade e contextualização do desafio).",
+      state: {
+        blocks: {
+          languageVersion: 0,
+          blocks: [{
+            type: "ametech_set_background",
+            x: 10, y: 10,
+            fields: { BG: "base" }
+          }]
+        }
+      }
+    },
+  ];
+
+  const nativos = [
+    {
+      title: "Controle: se / senão (if/else)",
+      desc: "Decisão: execute ações diferentes conforme a condição.",
+      state: {
+        blocks: {
+          languageVersion: 0,
+          blocks: [{
+            type: "controls_if",
+            x: 10, y: 10,
+            inputs: {
+              IF0: {
+                block: {
+                  type: "logic_compare",
+                  fields: { OP: "EQ" },
+                  inputs: {
+                    A: { block: { type: "math_number", fields: { NUM: 1 } } },
+                    B: { block: { type: "math_number", fields: { NUM: 1 } } }
+                  }
+                }
+              }
+            }
+          }]
+        }
+      }
+    },
+    {
+      title: "Laço: repetir N vezes",
+      desc: "Repetição: reduz blocos e cria padrões.",
+      state: {
+        blocks: {
+          languageVersion: 0,
+          blocks: [{
+            type: "controls_repeat_ext",
+            x: 10, y: 10,
+            inputs: {
+              TIMES: { block: { type: "math_number", fields: { NUM: 4 } } }
+            }
+          }]
+        }
+      }
+    },
+    {
+      title: "Texto: juntar (concatenação)",
+      desc: "Útil para mensagens dinâmicas e narrativas (4º–9º).",
+      state: {
+        blocks: {
+          languageVersion: 0,
+          blocks: [{
+            type: "text_join",
+            x: 10, y: 10,
+            extraState: { itemCount: 2 }
+          }]
+        }
+      }
+    },
+    {
+      title: "Variáveis: definir variável",
+      desc: "Abstração: guardar valores para contar passos, pontos, etc.",
+      state: {
+        blocks: {
+          languageVersion: 0,
+          blocks: [{
+            type: "variables_set",
+            x: 10, y: 10,
+            fields: { VAR: { id: "v1", name: "contador" } },
+            inputs: { VALUE: { block: { type: "math_number", fields: { NUM: 0 } } } }
+          }],
+          variables: [{ id: "v1", name: "contador" }]
+        }
+      }
+    },
+  ];
+
+  // Render
+  for (const item of ametech) addCard("tab-ametech", item.title, item.desc, item.state);
+  for (const item of nativos) addCard("tab-nativos", item.title, item.desc, item.state);
+
+  // Tabs
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    const target = t.getAttribute('data-tab');
+    document.getElementById('tab-ametech').classList.toggle('hidden', target !== 'tab-ametech');
+    document.getElementById('tab-nativos').classList.toggle('hidden', target !== 'tab-nativos');
+  }));
+</script>
+
+</body>
+</html>

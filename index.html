@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Momento Tech</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/blockly@10.4.3/blockly.min.js"></script>
+  <script src="https://unpkg.com/blockly@10.4.3/javascript_compressed.js"></script>
+  <script src="https://unpkg.com/blockly@10.4.3/msg/pt-br.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="pill">AME</div>
+      <div>
+        <div class="title">AME Academy</div>
+        <div class="subtitle">Momento Tech – Programação com blocos</div>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="runBtn">Executar missão</button>
+      <!-- <button id="showBtn">Ver código</button> -->
+      <button id="resetBtn">Resetar</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <div id="blocklyDiv"></div>
+    </section>
+
+    <section class="panel side">
+      <h3>CENÁRIO</h3>
+      <div id="stage" class="stage scene-base">
+        <div id="ametechWrapper" style="left:12%; bottom:18%;">
+          <div id="ametechSprite"></div>
+          <div id="speechBubble" class="empty"></div>
+        </div>
+      </div>
+      <p class="hint">Use os blocos e clique em <b>Executar missão</b>.</p>
+
+      <h3>SAÍDA</h3>
+      <pre id="output">// Pronto.</pre>
+    </section>
+  </main>
+
+  <xml id="toolbox" style="display:none">
+    <category name="Repetição" colour="#0EA5E9">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <shadow type="math_number"><field name="NUM">4</field></shadow>
+        </value>
+      </block>
+      <block type="controls_if"></block>
+    </category>
+
+  
+    <category name="Movimento" colour="#4F46E5">
+      <block type="ametech_move_right_simple">
+        <value name="STEPS"><shadow type="math_number"><field name="NUM">5</field></shadow></value>
+      </block>
+      <block type="ametech_move_left_simple">
+        <value name="STEPS"><shadow type="math_number"><field name="NUM">5</field></shadow></value>
+      </block>
+      <block type="ametech_move_up_simple">
+        <value name="STEPS"><shadow type="math_number"><field name="NUM">5</field></shadow></value>
+      </block>
+      <block type="ametech_move_down_simple">
+        <value name="STEPS"><shadow type="math_number"><field name="NUM">5</field></shadow></value>
+      </block>
+    
+            <block type="ametech_step_back">
+        <value name="STEPS"><shadow type="math_number"><field name="NUM">4</field></shadow></value>
+      </block>
+      <block type="ametech_spin_left"></block>
+      <block type="ametech_spin_right"></block>
+
+<block type="ametech_jump"></block>
+         <block type="ametech_move_to">
+        <value name="X"><shadow type="math_number"><field name="NUM">5</field></shadow></value>
+        <value name="Y"><shadow type="math_number"><field name="NUM">2</field></shadow></value>
+      </block>
+      <block type="ametech_center"></block>
+    </category>
+
+      <category name="Ametech" colour="#6366F1">
+      <block type="ametech_say"></block>
+      <block type="ametech_clear_speech"></block>
+      
+    </category>
+
+    <category name="Cenário" colour="#22C55E">
+      <block type="ametech_set_background"></block>
+      
+    </category>
+
+  
+  </xml>
+
+  <script src="main.js"></script>
+</body>
+</html>

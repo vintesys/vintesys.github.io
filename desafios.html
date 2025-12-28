@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Catálogo de Desafios — Momento Tech (Blockly + Ametech)</title>
+  <style>
+    :root{
+      --paper:#ffffff;
+      --ink:#0f172a;
+      --muted:#475569;
+      --line:#e2e8f0;
+      --soft:#f8fafc;
+      --accent:#45c6dd;
+      --accent2:#4F46E5;
+      --shadow: 0 10px 26px rgba(15, 23, 42, .12);
+      --radius: 14px;
+    }
+    *{ box-sizing:border-box }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background: linear-gradient(180deg, #eef2ff 0%, #f8fafc 40%, #f1f5f9 100%);
+    }
+    header{
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .top{
+      max-width:1100px;
+      margin:0 auto;
+      padding:14px 16px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; }
+    .pill{
+      width:50px; height:36px; border-radius:999px;
+      background: var(--accent);
+      color:#fff; font-weight:900;
+      display:flex; align-items:center; justify-content:center;
+      letter-spacing:.06em;
+      box-shadow: 0 10px 18px rgba(69,198,221,.25);
+      flex: 0 0 auto;
+    }
+    h1{ font-size:16px; margin:0; }
+    .sub{ font-size:12px; color:var(--muted); margin:2px 0 0 0; }
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:18px 16px 40px;
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap:16px;
+    }
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding:14px 14px 10px;
+      border-bottom:1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    }
+    .card .hd h2{ margin:0; font-size:14px; }
+    .card .bd{ padding:14px; }
+    .note{
+      border-radius: 12px;
+      padding: 10px 12px;
+      border:1px solid rgba(69,198,221,.35);
+      background: rgba(69,198,221,.08);
+      margin: 10px 0 12px;
+      font-size:13px;
+      color: var(--ink);
+    }
+    .toc a{
+      display:block;
+      padding:8px 10px;
+      border-radius:10px;
+      text-decoration:none;
+      color:var(--ink);
+      border:1px solid transparent;
+      font-size:13px;
+    }
+    .toc a:hover{ background:var(--soft); border-color:var(--line) }
+    section{ scroll-margin-top: 16px; }
+    h3{ margin:0 0 8px; font-size:14px; }
+    p{ margin:0 0 10px; line-height:1.5; font-size:13px; color:var(--ink); }
+    ul{ margin: 8px 0 12px 18px; font-size:13px; line-height:1.5; }
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-size:13px;
+      margin: 10px 0 14px;
+    }
+    th, td{
+      padding:10px 10px;
+      border-bottom:1px solid var(--line);
+      vertical-align:top;
+      text-align:left;
+    }
+    th{
+      background: #f8fafc;
+      font-size:12px;
+      letter-spacing:.02em;
+      color:#111827;
+    }
+    tr:last-child td{ border-bottom:none }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:999px;
+      padding:4px 8px;
+      font-size:12px;
+      color:var(--muted);
+      margin-right:6px;
+      margin-bottom:6px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--accent2);
+    }
+    .lvl1 .dot{ background:#16a34a }
+    .lvl2 .dot{ background:#0ea5e9 }
+    .lvl3 .dot{ background:#f59e0b }
+    .lvl4 .dot{ background:#ef4444 }
+    .small{ font-size:12px; color: var(--muted); }
+    @media (max-width: 980px){
+      main{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="brand">
+      <div class="pill">AME</div>
+      <div>
+        <h1>Catálogo de Desafios — Momento Tech (Blockly + Ametech)</h1>
+        <div class="sub">Arquivo separado para evoluirmos e integrar aos livros AMEtech de pensamento computacional.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <aside class="card">
+    <div class="hd"><h2>Como usar este catálogo</h2></div>
+    <div class="bd">
+      <p>
+        Cada desafio contém: <b>objetivo</b>, <b>restrições</b> e <b>critérios de sucesso</b>.
+        A versão atual é um “esqueleto” organizado para evoluirmos depois com:
+      </p>
+      <ul>
+        <li>descrições ao diagramador</li>
+        <li>vinculação por Unidade/Missão dos livros AMEtech</li>
+        <li>variações por faixa etária</li>
+        <li>respostas-modelo e dicas de depuração</li>
+      </ul>
+
+      <div class="note">
+        <b>Níveis do catálogo</b><br/>
+        <span class="tag lvl1"><span class="dot"></span>Nível 1 — Sequência</span>
+        <span class="tag lvl2"><span class="dot"></span>Nível 2 — Repetição</span>
+        <span class="tag lvl3"><span class="dot"></span>Nível 3 — Decisão</span>
+        <span class="tag lvl4"><span class="dot"></span>Nível 4 — Abstração</span>
+        <div class="small" style="margin-top:8px;">
+          Observação: este arquivo não contém “imagens do livro” ainda. Vamos integrar depois.
+        </div>
+      </div>
+
+      <div class="card" style="border:none; box-shadow:none; background:transparent;">
+        <div class="bd toc" style="padding:0;">
+          <a href="#estrutura">Estrutura padrão do desafio</a>
+          <a href="#nivel1">Nível 1 — Sequência</a>
+          <a href="#nivel2">Nível 2 — Repetição</a>
+          <a href="#nivel3">Nível 3 — Decisão</a>
+          <a href="#nivel4">Nível 4 — Abstração</a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <article class="card">
+    <div class="hd"><h2 id="estrutura">Estrutura padrão do desafio</h2></div>
+    <div class="bd">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:22%;">Campo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Título</b></td><td>Nome curto e memorável (ex.: “Passos do Robô”).</td></tr>
+          <tr><td><b>Nível</b></td><td>1 a 4 (Sequência → Abstração).</td></tr>
+          <tr><td><b>Objetivo</b></td><td>O que deve acontecer no cenário.</td></tr>
+          <tr><td><b>Restrições</b></td><td>O que pode/não pode usar (opcional, para avançar).</td></tr>
+          <tr><td><b>Critério de sucesso</b></td><td>Como o professor/aluno confirma que deu certo.</td></tr>
+          <tr><td><b>Blocos sugeridos</b></td><td>Lista de blocos que ajudam a resolver.</td></tr>
+          <tr><td><b>Extensão</b></td><td>Variação mais difícil (para diferenciar a turma).</td></tr>
+        </tbody>
+      </table>
+
+      <p class="small">
+        Nota: na próxima etapa, podemos transformar cada desafio em uma ficha completa com “descrição ao diagramador” e
+        conexão com Unidade/Missão do livro.
+      </p>
+    </div>
+
+    <div class="hd"><h2 id="nivel1">Nível 1 — Sequência (rascunho inicial)</h2></div>
+    <div class="bd">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:28%;">Título</th>
+            <th>Objetivo</th>
+            <th style="width:26%;">Critério de sucesso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag lvl1"><span class="dot"></span>N1</span>Passos do Ametech</td>
+            <td>Andar 8 passos para a direita e dizer “Olá!” no final.</td>
+            <td>O Ametech termina mais à direita e o balão mostra a fala.</td>
+          </tr>
+          <tr>
+            <td><span class="tag lvl1"><span class="dot"></span>N1</span>Três Ações</td>
+            <td>Falar, andar, pular (nesta ordem).</td>
+            <td>Saída registra as 3 ações em ordem.</td>
+          </tr>
+          <tr>
+            <td><span class="tag lvl1"><span class="dot"></span>N1</span>Centro do Palco</td>
+            <td>Levar o Ametech ao centro e comemorar.</td>
+            <td>O Ametech fica no centro e “sucesso” toca.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hd"><h2 id="nivel2">Nível 2 — Repetição (rascunho inicial)</h2></div>
+    <div class="bd">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:28%;">Título</th>
+            <th>Objetivo</th>
+            <th style="width:26%;">Critério de sucesso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag lvl2"><span class="dot"></span>N2</span>Marcha do Robô</td>
+            <td>Repetir: andar 2 passos e falar “eu vou!” por 4 vezes.</td>
+            <td>O padrão (andar + falar) acontece 4 vezes.</td>
+          </tr>
+          <tr>
+            <td><span class="tag lvl2"><span class="dot"></span>N2</span>Contagem de Espera</td>
+            <td>Esperar 300ms entre cada passo, repetindo 6 vezes.</td>
+            <td>Movimento com ritmo e pausas visíveis.</td>
+          </tr>
+          <tr>
+            <td><span class="tag lvl2"><span class="dot"></span>N2</span>Ritmo e Som</td>
+            <td>A cada 3 passos, tocar bip (repetindo até completar 12 passos).</td>
+            <td>Som aparece exatamente em cada 3 passos.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hd"><h2 id="nivel3">Nível 3 — Decisão (rascunho inicial)</h2></div>
+    <div class="bd">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:28%;">Título</th>
+            <th>Objetivo</th>
+            <th style="width:26%;">Critério de sucesso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag lvl3"><span class="dot"></span>N3</span>Se Chegar, Comemora</td>
+            <td>Se estiver no centro, falar “cheguei!”. Senão, ir ao centro e falar.</td>
+            <td>Independente do início, termina no centro com a fala correta.</td>
+          </tr>
+          <tr>
+            <td><span class="tag lvl3"><span class="dot"></span>N3</span>Borda Alerta</td>
+            <td>Andar até a borda e, ao chegar, tocar bip e voltar 3 passos.</td>
+            <td>Detecta borda e reage (som + retorno).</td>
+          </tr>
+          <tr>
+            <td><span class="tag lvl3"><span class="dot"></span>N3</span>Visível ou Não?</td>
+            <td>Se estiver escondido, mostrar. Se estiver visível, falar “estou aqui!”.</td>
+            <td>A condição (visível?) altera o comportamento corretamente.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hd"><h2 id="nivel4">Nível 4 — Abstração (rascunho inicial)</h2></div>
+    <div class="bd">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:28%;">Título</th>
+            <th>Objetivo</th>
+            <th style="width:26%;">Critério de sucesso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag lvl4"><span class="dot"></span>N4</span>Meu Passo Padrão</td>
+            <td>Criar uma função “passoPadrão” e usá-la 6 vezes.</td>
+            <td>Existe uma função e ela é reutilizada.</td>
+          </tr>
+          <tr>
+            <td><span class="tag lvl4"><span class="dot"></span>N4</span>Contador de Passos</td>
+            <td>Usar variável para contar passos até a borda e anunciar o total.</td>
+            <td>Fala mostra o número de passos no momento da borda.</td>
+          </tr>
+          <tr>
+            <td><span class="tag lvl4"><span class="dot"></span>N4</span>Rotas com Lista</td>
+            <td>Criar uma lista e iterar para executar um trajeto (valores/direções).</td>
+            <td>Usa lista + laço em alguma parte.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="small">
+        Próximo passo (integração com o livro): cada desafio vira “ficha” com história, descrição ao diagramador,
+        pistas, níveis de ajuda e critérios visuais.
+      </p>
+    </div>
+
+  </article>
+</main>
+</body>
+</html>
