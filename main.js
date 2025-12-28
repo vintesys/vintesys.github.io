@@ -433,4 +433,3 @@ function ametechJump() {
     logLine('Ametech pulou.');
   });
 }
-
